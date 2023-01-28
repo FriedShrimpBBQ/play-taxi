@@ -1,7 +1,6 @@
-package main
+package taxi
 
 import (
-	"flag"
 	"fmt"
 )
 
@@ -19,7 +18,7 @@ func max(x, y int) int {
 	return y
 }
 
-func resetTaxiWorld() [][]string {
+func ResetTaxiWorld() [][]string {
 	return [][]string{
 		{"+", "-", "-", "-", "-", "-", "-", "-", "-", "-", "+"},
 		{"|", "R", ":", " ", "|", " ", ":", " ", ":", "G", "|"},
@@ -31,16 +30,6 @@ func resetTaxiWorld() [][]string {
 	}
 }
 
-func isFlagPassed(name string) bool {
-	found := false
-	flag.Visit(func(f *flag.Flag) {
-		if f.Name == name {
-			found = true
-		}
-	})
-	return found
-}
-
 func SetTaxiLocation(taxiWorld [][]string, taxiX int, taxiY int) [][]string {
 	if taxiX >= 0 && taxiX <= 4 {
 		// we update the taxi location with "T" using offset if valid
@@ -50,20 +39,20 @@ func SetTaxiLocation(taxiWorld [][]string, taxiX int, taxiY int) [][]string {
 
 }
 
-func updateTaxiLocation(taxiWorld [][]string, taxiX int, taxiY int, act int) [][]string {
+func UpdateTaxiLocation(taxiWorld [][]string, taxiX int, taxiY int, act int) [][]string {
 	if taxiWorld[taxiY+1][taxiX*2+1] == "T" {
 		if act == 0 {
 			taxiY = min(taxiY+1, 4)
-			return SetTaxiLocation(resetTaxiWorld(), taxiX, taxiY)
+			return SetTaxiLocation(ResetTaxiWorld(), taxiX, taxiY)
 		} else if act == 1 {
 			taxiY = max(taxiY-1, 0)
-			return SetTaxiLocation(resetTaxiWorld(), taxiX, taxiY)
+			return SetTaxiLocation(ResetTaxiWorld(), taxiX, taxiY)
 		} else if act == 2 {
 			taxiX = max(taxiX+1, 4)
-			return SetTaxiLocation(resetTaxiWorld(), taxiX, taxiY)
+			return SetTaxiLocation(ResetTaxiWorld(), taxiX, taxiY)
 		} else {
 			taxiX = min(taxiX-1, 0)
-			return SetTaxiLocation(resetTaxiWorld(), taxiX, taxiY)
+			return SetTaxiLocation(ResetTaxiWorld(), taxiX, taxiY)
 		}
 	}
 	return taxiWorld
@@ -108,37 +97,4 @@ func CheckPassengerLocation(taxiWorld [][]string, passenger int, goal int) int {
 		passenger = 5
 	}
 	return passenger
-}
-
-var taxiWorld = resetTaxiWorld()
-
-func main() {
-	var taxiX, taxiY, act, passenger, goal int
-	flag.IntVar(&taxiX, "taxi-x", 0, "Taxi X coordinate")
-	flag.IntVar(&taxiY, "taxi-y", 0, "Taxi X coordinate")
-	flag.IntVar(&act, "act", 0, "Taxi Move Direction")
-	flag.IntVar(&passenger, "passenger", 0, "Passenger Location")
-	flag.IntVar(&goal, "goal", 0, "Goal Location")
-	flag.Parse()
-
-	if isFlagPassed("taxi-x") && isFlagPassed("taxi-y") {
-		taxiWorld = SetTaxiLocation(taxiWorld, taxiX, taxiY)
-		fmt.Println("")
-	} else {
-		fmt.Printf("Flags are not set")
-	}
-
-	ShowTaxiWorld(taxiWorld)
-
-	if isFlagPassed("act") {
-		fmt.Println("\n~Taxi Move~")
-		taxiWorld = updateTaxiLocation(taxiWorld, taxiX, taxiY, act)
-		ShowTaxiWorld(taxiWorld)
-	}
-
-	if isFlagPassed("passenger") && isFlagPassed("goal") {
-		passenger := CheckPassengerLocation(taxiWorld, passenger, goal)
-		fmt.Println("Passegner location:", map[int]string{0: "R", 1: "G", 2: "Y", 3: "B", 4: "T"}[passenger])
-	}
-
 }
