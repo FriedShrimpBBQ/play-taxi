@@ -55,7 +55,7 @@ Example
 $ go run main.go -taxi-x 0 -taxi-y 3 -act 1 -passenger 3 -goal 0
 +---------+             
 |R: | : :G|             
-| : | : : |             ```
+| : | : : |             
 | : : : : |             
 |T| : | : |             
 |Y| : |B: |             
