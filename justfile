@@ -8,4 +8,4 @@ serve: build
   python -m http.server --directory docs
   
 format:
-  prettier --write docs/index.html
+  prettier --write docs/skeleton.html
