@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import bulma.css-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="css/bulma.min.css"
+      media="screen,projection"
+    />
+    <link href="css/openmoji-color-awesome.css" rel="stylesheet" />
+    <link href="css/openmoji-black-awesome.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+
+    <!--Import wasm_exec.js based on go env GOROOT-->
+    <script src="js/wasm_exec.js"></script>
+    <script>
+      const go = new Go();
+      WebAssembly.instantiateStreaming(
+        fetch("static/main.wasm"),
+        go.importObject
+      ).then((result) => {
+        go.run(result.instance);
+      });
+    </script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="section">
+        <h1 class="title">Taxi Environment</h1>
+        <p class="subtitle">
+          For interacting and playing the Taxi Environment Gym Environment
+        </p>
+        <div class="box">
+          <div class="columns">
+            <span class="icon is-large-x5">
+              <i class="oma-5x oma-deciduous-tree"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="box">
+          <div id="inputHandler"></div>
+        </div>
+      </div>
+    </div>
+    <script src="js/mithril.js"></script>
+    <script>
+      var randomNumber = function (maxInt = 10) {
+        return Math.floor(Math.random() * maxInt);
+      };
+      var inputHandler = document.querySelector("#inputHandler");
+      var TaxiWorld = {
+        model: {
+          key: "",
+          act: -1,
+          worldInfo: "",
+          taxiX: -1,
+          taxiY: -1,
+          passenger: 0,
+          goal: 0,
+        },
+        view: function () {
+          return m("div", {}, "clicked: " + this.model.count);
+        },
+        controller: function () {},
+      };
+
+      function showKey(event) {
+        console.log(event.keyCode);
+      }
+
+      var Layout = function () {
+        return {
+          view: function () {
+            return m("div", [
+              m("p", "key: " + TaxiWorld.key),
+
+              m("pre", TaxiWorld.model.worldInfo),
+            ]);
+          },
+        };
+      };
+
+      window.addEventListener("keydown", function (e) {
+        TaxiWorld.model.key = e.key;
+        if (TaxiWorld.model.worldInfo == "") {
+          TaxiWorld.model.worldInfo = resetTaxiWorld(e.key);
+        }
+
+        if (TaxiWorld.model.taxiX < 0) {
+          TaxiWorld.model.taxiX = randomNumber(5); // 0, 1, 2, 3, 4
+          TaxiWorld.model.taxiY = randomNumber(5); // 0, 1, 2, 3, 4
+          TaxiWorld.model.passenger = randomNumber(4); // 0-3
+          TaxiWorld.model.goal = randomNumber(4); // 0-3
+        }
+
+        // now check if we move
+        if (TaxiWorld.model.key == "s") {
+          TaxiWorld.model.act = 0;
+        } else if (TaxiWorld.model.key == "w") {
+          TaxiWorld.model.act = 1;
+        } else if (TaxiWorld.model.key == "d") {
+          TaxiWorld.model.act = 2;
+        } else if (TaxiWorld.model.key == "a") {
+          TaxiWorld.model.act = 3;
+        } else {
+          TaxiWorld.model.act = -1;
+        }
+
+        if (TaxiWorld.model.taxiX >= 0) {
+          coordinateInfo = updateTaxiCoordinates(TaxiWorld.model);
+          console.log(coordinateInfo);
+          TaxiWorld.model.taxiX = coordinateInfo["taxiX"];
+          TaxiWorld.model.taxiY = coordinateInfo["taxiY"];
+          TaxiWorld.model.worldInfo = taxiWorldStringify(TaxiWorld.model);
+        }
+
+        console.log(TaxiWorld);
+        m.redraw();
+      });
+
+      m.mount(inputHandler, Layout());
+    </script>
+  </body>
+</html>

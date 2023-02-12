@@ -9,3 +9,4 @@ serve: build
   
 format:
   prettier --write docs/skeleton.html
+  prettier --write docs/wasm-skeleton.html  

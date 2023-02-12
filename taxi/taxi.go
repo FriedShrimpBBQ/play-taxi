@@ -2,6 +2,7 @@ package taxi
 
 import (
 	"fmt"
+	"strings"
 )
 
 func min(x, y int) int {
@@ -41,35 +42,39 @@ func SetTaxiLocation(taxiWorld [][]string, taxiX int, taxiY int) [][]string {
 
 func UpdateTaxiLocation(taxiWorld [][]string, taxiX int, taxiY int, act int) [][]string {
 	if taxiWorld[taxiY+1][taxiX*2+1] == "T" {
-		if act == 0 {
-			taxiY = min(taxiY+1, 4)
-			return SetTaxiLocation(ResetTaxiWorld(), taxiX, taxiY)
-		} else if act == 1 {
-			taxiY = max(taxiY-1, 0)
-			return SetTaxiLocation(ResetTaxiWorld(), taxiX, taxiY)
-		} else if act == 2 {
-			taxiX = max(taxiX+1, 4)
-			return SetTaxiLocation(ResetTaxiWorld(), taxiX, taxiY)
-		} else {
-			taxiX = min(taxiX-1, 0)
-			return SetTaxiLocation(ResetTaxiWorld(), taxiX, taxiY)
-		}
+		coordinates := UpdateTaxiCoordinates(taxiX, taxiY, act)
+		return SetTaxiLocation(ResetTaxiWorld(), coordinates[0], coordinates[1])
 	}
 	return taxiWorld
 }
 
-func ShowTaxiWorld(taxiWorld [][]string) {
-	for r, _ := range taxiWorld {
+func UpdateTaxiCoordinates(taxiX int, taxiY int, act int) []int {
 
-		// Then we iterate over the items of each row:
-		for _, colValue := range taxiWorld[r] {
+	if act == 0 {
+		taxiY = min(taxiY+1, 4)
 
-			// See string formatting docs at
-			// https://gobyexample.com/string-formatting
-			fmt.Print(colValue)
-		}
-		fmt.Print("\n")
+	} else if act == 1 {
+		taxiY = max(taxiY-1, 0)
+	} else if act == 2 {
+		taxiX = max(taxiX+1, 4)
+
+	} else {
+		taxiX = min(taxiX-1, 0)
 	}
+
+	return []int{taxiX, taxiY}
+}
+
+func ShowTaxiWorld(taxiWorld [][]string) {
+	fmt.Print(TaxiWorldStringify(taxiWorld))
+}
+
+func TaxiWorldStringify(taxiWorld [][]string) string {
+	taxiWorldFlatten := []string{}
+	for r, _ := range taxiWorld {
+		taxiWorldFlatten = append(taxiWorldFlatten, strings.Join(taxiWorld[r], ""))
+	}
+	return strings.Join(taxiWorldFlatten, "\n")
 }
 
 func CheckPassengerLocation(taxiWorld [][]string, passenger int, goal int) int {
