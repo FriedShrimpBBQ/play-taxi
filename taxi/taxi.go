@@ -98,3 +98,7 @@ func CheckPassengerLocation(taxiWorld [][]string, passenger int, goal int) int {
 	}
 	return passenger
 }
+
+func GetPassengerLocation(passenger int) string {
+	return map[int]string{0: "R", 1: "G", 2: "Y", 3: "B", 4: "T"}[passenger]
+}

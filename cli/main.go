@@ -44,7 +44,7 @@ func main() {
 
 	if isFlagPassed("passenger") && isFlagPassed("goal") {
 		passenger := taxi.CheckPassengerLocation(taxiWorld, passenger, goal)
-		fmt.Println("Passegner location:", map[int]string{0: "R", 1: "G", 2: "Y", 3: "B", 4: "T"}[passenger])
+		fmt.Println("Passegner location:", taxi.GetPassengerLocation(passenger))
 	}
 
 }
