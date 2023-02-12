@@ -1,0 +1,36 @@
+.icon.is-large-x5 {
+  height: 6rem;
+  width: 6rem;
+}
+
+.icon.red {
+	width:6em;
+	height:6em;
+	background:LightSalmon;
+	-moz-border-radius: 6em;
+	-webkit-border-radius: 6em
+}
+.icon.blue {
+	width:6em;
+	height:6em;
+	background:LightSkyBlue;
+	-moz-border-radius: 6em;
+	-webkit-border-radius: 6em
+}
+
+.icon.yellow {
+	width:6em;
+	height:6em;
+	background:PeachPuff;
+	-moz-border-radius: 6em;
+	-webkit-border-radius: 6em
+}
+
+.icon.green {
+	width:6em;
+	height:6em;
+	background:LightGreen;
+	-moz-border-radius: 6em;
+	-webkit-border-radius: 6em
+}
+

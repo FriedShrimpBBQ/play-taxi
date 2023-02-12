@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import bulma.css-->
+    <link type="text/css" rel="stylesheet" href="css/bulma.min.css" media="screen,projection"/>
+    <link href="css/openmoji-color-awesome.css" rel="stylesheet" />
+    <link href="css/openmoji-black-awesome.css" rel="stylesheet" />
+	<link href="css/main.css" rel="stylesheet" />
+
+    <!--Import wasm_exec.js based on go env GOROOT-->
+    <script src="js/wasm_exec.js"></script>
+    <script>
+      const go = new Go();
+      WebAssembly.instantiateStreaming(
+        fetch("static/main.wasm"),
+        go.importObject
+      ).then((result) => {
+        go.run(result.instance);
+      });
+    </script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="section">
+        <h1 class="title">Taxi Environment</h1>
+        <p class="subtitle">
+          For interacting and playing the Taxi Environment Gym Environment
+        </p>
+        <div class="box">
+          <div class="columns">
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+          </div>
+          <div class="columns">
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5 red">
+			  <i class="oma-5x oma-shinto-shrine"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5 blue">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  			</span>
+			<span class="icon is-large-x5">
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-national-park"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+          </div>
+          <div class="columns">
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			</span>
+			<span class="icon is-large-x5">
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+          </div>
+          <div class="columns">
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			</span>
+			<span class="icon is-large-x5">
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+          </div>
+          <div class="columns">
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+				<i class="oma-5x oma-oncoming-taxi"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			<span class="icon is-large-x5">
+			</span>
+			<span class="icon is-large-x5">
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+          </div>
+          <div class="columns">
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-beach-with-umbrella"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+
+			</span>
+			<span class="icon is-large-x5">
+			  
+			</span>
+			  <span class="icon is-large-x5 green">
+				<i class="oma-5x oma-person-raising-hand"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-ferris-wheel"></i>
+			</span>
+			
+					
+			<span class="icon is-large-x5">
+				</span>
+			<span class="icon is-large-x5 yellow">
+				<i class="oma-5x oma-taxi"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+          </div>
+		   <div class="columns">
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+			<span class="icon is-large-x5">
+			  <i class="oma-5x oma-deciduous-tree"></i>
+			</span>
+          </div>
+        </div>
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
